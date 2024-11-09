@@ -1,0 +1,19 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+
+# Colors
+blink=5m
+bold=1m
+faint=2m
+italic=3m
+normal=10m
+reverse=7m
+underline=4m
+
+blue="\033[34;"
+color_end="\033[0m"
+cyan="\033[36;"
+green="\033[32;"
+red="\033[31;"
+yellow="\033[33;"

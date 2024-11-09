@@ -1,0 +1,127 @@
+version: 1
+default_environment: dev
+project_id: 483ddec0-f203-4ef0-b444-bbd7b6142000
+environments:
+- name: dev
+- name: staging
+- name: prod
+plugins:
+  extractors:
+  - name: tap-oracle
+    variant: s7clarke10
+    pip_url: git+https://github.com/s7clarke10/pipelinewise-tap-oracle.git
+    config:
+      service_name: DBPROD
+      default_replication_method: FULL_TABLE
+      filter_tables:
+      - SAPIENS-E640RAT
+      - SAPIENS-E640LCT
+      - SAPIENS-E044CCU
+      - SAPIENS-E045PLA
+      - SAPIENS-E070FIL
+      - SAPIENS-E043PCM
+      - SAPIENS-E600MCC
+      - SAPIENS-E640LOT
+      - SAPIENS-E644LNF
+      - SAPIENS-E140IPV
+      - SAPIENS-E140ISV
+      - SAPIENS-E085CLI
+      - SAPIENS-E095FOR
+      - SAPIENS-E075PRO
+      - SAPIENS-E006PAI
+      - SAPIENS-E090REP
+      - SAPIENS-E140RAT
+      - SAPIENS-E120PED
+      - SAPIENS-E120RAT
+      - SAPIENS-E012FAM
+      - SAPIENS-E140NFV
+      - SAPIENS-E120IPD
+      - SAPIENS-E091PLF
+      - SAPIENS-E210MVP
+      - SAPIENS-E080SER
+      - SAPIENS-E440IPC
+      - SAPIENS-E440RAT
+      - SAPIENS-E440NFC
+      - SAPIENS-E440ISC
+      - SAPIENS-E130DME
+      - SAPIENS-E130HFI
+      - SAPIENS-E130CSU
+      - SAPIENS-E130AGS
+      - SAPIENS-E090RAT
+      host: 10.1.1.239
+      port: 1521
+      user: sapiens
+      metadata:
+        SAPIENS-E640RAT:
+          replication_method: INCREMENTAL
+          replication_key: DATLCT
+          DATLCT:
+            is-replication-key: true
+        SAPIENS-E640LCT:
+          replication_method: INCREMENTAL
+          replication_key: DATLCT
+          DATLCT:
+            is-replication-key: true
+        SAPIENS-E044CCU:
+          replication_method: INCREMENTAL
+          replication_key: DATALT
+          DATALT:
+            is-replication-key: true
+        SAPIENS-E045PLA:
+          replication_method: INCREMENTAL
+          replication_key: DATALT
+          DATALT:
+            is-replication-key: true
+        SAPIENS-E043PCM:
+          replication_method: INCREMENTAL
+          replication_key: DATALT
+          DATALT:
+            is-replication-key: true
+        SAPIENS-E600MCC:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E120IPD:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E140IPV:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E120RAT:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E120PED:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E075PRO:
+          replication_method: INCREMENTAL
+          replication_key: DATALT
+          DATALT:
+            is-replication-key: true
+        SAPIENS-E140ISV:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+  loaders:
+  - name: target-postgres
+    variant: meltanolabs
+    pip_url: meltanolabs-target-postgres
+    config:
+      host: flamboyantly-epic-gemsbok.data-1.use1.tembo.io
+      port: 5432
+      user: postgres
+      database: postgres
+      default_target_schema: public
+      dialect+driver: postgresql+psycopg2
+      sqlalchemy_url: postgresql+psycopg2://airflow:airflow@postgres:5432/postgres
+      load_method: overwrite

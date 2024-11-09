@@ -1,0 +1,14 @@
+dags/
+dbt/
+extract/
+key/
+logs/
+plugins/
+dbt_logs/
+dbt_packages/
+dbt_target/
+.vscode
+.DS_Store
+.env
+.venv/
+__pycache__/

@@ -1,0 +1,125 @@
+version: '3'
+x-airflow-common:
+  &airflow-common
+  build: .
+  image: apache/airflow:2.10.3
+  env_file: .env
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./dbt:/opt/airflow/dbt
+    - ./logs:/opt/airflow/logs
+    - ./plugins:/opt/airflow/plugins
+    - ./dbt_logs:/opt/airflow/dbt_logs
+    - ./dbt_target:/opt/airflow/dbt_target
+    - ./dbt_packages:/opt/airflow/dbt_packages
+    - /Users/raphaelpacheco/docker.sock:/var/run/docker.sock
+  environment:
+    - AIRFLOW__CORE__BASE_URL=http://webserver:8080
+  user: "airflow:0"
+  depends_on:
+    redis:
+      condition: service_healthy
+    postgres:
+      condition: service_healthy
+  networks:
+    - airflow-network
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 5s
+      retries: 5
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - airflow-network
+  
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 30s
+      retries: 50
+    restart: always
+    networks:
+      - airflow-network
+  
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    restart: always
+  
+  airflow-scheduler:
+    <<: *airflow-common
+    command: scheduler
+    restart: always
+  
+  airflow-worker:
+    <<: *airflow-common
+    command: celery worker
+    restart: always
+    environment:
+      - DOCKER_HOST=tcp://host.docker.internal:2375
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "2g"
+        reservations:
+          cpus: "0.5"
+          memory: "1g"
+  
+  airflow-init:
+    <<: *airflow-common
+    command: >
+      bash -c "airflow db init &&
+                airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  meltano:
+    build:
+      context: .
+      dockerfile: Dockerfile.meltano
+    image: meltano
+    container_name: macromaq-meltano
+    volumes:
+      - ./meltano:/opt/meltano
+      - ./hack:/opt/meltano/hack
+      - /Users/raphaelpacheco/docker.sock:/var/run/docker.sock
+    entrypoint: ["/opt/meltano/hack/meltano.sh"]
+    command: meltano el tap-oracle target-postgres
+    restart: "no"
+    networks:
+      - airflow-network
+    depends_on:
+      - postgres
+      - airflow-scheduler
+
+networks:
+  airflow-network:
+    driver: bridge
+
+volumes:
+  postgres-db-volume:

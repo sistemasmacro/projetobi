@@ -1,0 +1,2 @@
+meltano==3.5.4
+cx_Oracle==8.3

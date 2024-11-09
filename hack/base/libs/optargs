@@ -1,0 +1,14 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+
+contact_team="BI Platform"
+
+# Get all options 
+optargs_parse() {
+
+    # Read all ${@} and parse every positional paramater
+    while [ "${1-}" ]; do
+        shift
+    done
+}

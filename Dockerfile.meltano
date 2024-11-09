@@ -1,0 +1,39 @@
+# Dockerfile para Meltano
+FROM python:3.10-slim
+
+WORKDIR /opt/meltano
+
+# Instalar dependências necessárias para cx_Oracle
+RUN apt-get update && \
+    apt-get install -y unzip gcc libaio1 git && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copiar o arquivo do Instant Client para o container e instalá-lo
+COPY instantclient-basic-linux.zseries64-19.24.0.0.0dbru.zip /opt/oracle/instantclient-basiclite.zip
+RUN mkdir -p /opt/oracle && \
+    unzip /opt/oracle/instantclient-basiclite.zip -d /opt/oracle && \
+    rm /opt/oracle/instantclient-basiclite.zip && \
+    echo /opt/oracle/instantclient_21_10 > /etc/ld.so.conf.d/oracle-instantclient.conf && \
+    ldconfig
+
+# Configurar variáveis de ambiente para o cx_Oracle
+ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_21_10:$LD_LIBRARY_PATH
+ENV ORA_PYTHON_DRIVER_TYPE=thin
+# Copiar o arquivo de requisitos
+COPY requirements_meltano.txt .
+
+# Instalar as dependências
+RUN pip install --upgrade pip
+RUN pip install -r requirements_meltano.txt
+
+COPY hack/meltano.sh /opt/meltano/hack/meltano.sh
+RUN chmod +x ./hack/meltano.sh
+
+# Configuração de usuário padrão
+RUN useradd -ms /bin/bash meltano
+USER meltano
+
+# Inicializar Meltano no diretório de trabalho
+WORKDIR /opt/meltano
+
+# ENTRYPOINT ["./hack/meltano.sh"]

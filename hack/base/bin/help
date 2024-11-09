@@ -1,0 +1,37 @@
+#!/bin/bash   
+set -o errexit
+set -o nounset
+
+# Source functions
+source ./hack/base/libs/optargs
+source ./hack/base/libs/colors
+
+# Parse options and set variables
+makefile_optargs=(${@})
+optargs_parse ${makefile_optargs[@]}
+
+# Show targets
+printf "${yellow}${bold}TARGETS${color_end}\n"
+
+# Process and group targets
+awk '
+BEGIN {FS = ":.*##@"; OFS=":"}
+/^[a-zA-Z_-]+:.*##@/ {
+    split($2, arr, " ")
+    group=arr[1]
+    desc=substr($2, index($2, arr[2]))
+    if (!(group in groups)) {
+        groups[group] = group ":"
+    }
+    groups[group] = groups[group] "\n\t" "'${blue}${bold}'" $1 "'${color_end}'" "\t" desc
+}
+END {
+    for (g in groups) {
+        print groups[g]
+        print ""
+    }
+}
+' ./Makefile
+
+# echo
+# printf "${yellow}${bold}EXAMPLES${color_end}\n"
