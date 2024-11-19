@@ -12,10 +12,11 @@ x-airflow-common:
     - ./dbt_logs:/opt/airflow/dbt_logs
     - ./dbt_target:/opt/airflow/dbt_target
     - ./dbt_packages:/opt/airflow/dbt_packages
-    - /Users/raphaelpacheco/docker.sock:/var/run/docker.sock
+    - /var/run/docker.sock:/var/run/docker.sock
   environment:
     - AIRFLOW__CORE__BASE_URL=http://webserver:8080
-  user: "airflow:0"
+    - DOCKER_HOST=tcp://host.docker.internal:2375
+  user: root
   depends_on:
     redis:
       condition: service_healthy
@@ -91,7 +92,7 @@ services:
   airflow-init:
     <<: *airflow-common
     command: >
-      bash -c "airflow db init &&
+      bash -c "airflow db migrate &&
                 airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin"
     depends_on:
       postgres:
@@ -103,13 +104,14 @@ services:
       context: .
       dockerfile: Dockerfile.meltano
     image: meltano
+    profiles:
+      - build_only
     container_name: macromaq-meltano
     volumes:
       - ./meltano:/opt/meltano
       - ./hack:/opt/meltano/hack
-      - /Users/raphaelpacheco/docker.sock:/var/run/docker.sock
     entrypoint: ["/opt/meltano/hack/meltano.sh"]
-    command: meltano el tap-oracle target-postgres
+    command: tail -f /dev/null
     restart: "no"
     networks:
       - airflow-network
@@ -120,6 +122,7 @@ services:
 networks:
   airflow-network:
     driver: bridge
+    external: true
 
 volumes:
   postgres-db-volume:

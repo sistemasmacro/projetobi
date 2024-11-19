@@ -22,6 +22,9 @@ build: create-dirs ##@Commands Build docker image bi_airflow
 	# @./hack/create_pip_conf.sh
 	@docker compose down
 	@docker compose build --no-cache
+	@docker compose --profile build_only build meltano --no-cache
+	@docker network create airflow-network
+	@docker image prune -f
 
 ## Uses docker compose to upload the airflow environment and the other necessary containers
 .PHONY: up 

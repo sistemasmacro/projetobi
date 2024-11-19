@@ -11,47 +11,280 @@ plugins:
     variant: s7clarke10
     pip_url: git+https://github.com/s7clarke10/pipelinewise-tap-oracle.git
     config:
-      service_name: DBPROD
-      default_replication_method: FULL_TABLE
-      filter_tables:
-      - SAPIENS-E640RAT
-      - SAPIENS-E640LCT
-      - SAPIENS-E044CCU
-      - SAPIENS-E045PLA
-      - SAPIENS-E070FIL
-      - SAPIENS-E043PCM
-      - SAPIENS-E600MCC
-      - SAPIENS-E640LOT
-      - SAPIENS-E644LNF
-      - SAPIENS-E140IPV
-      - SAPIENS-E140ISV
-      - SAPIENS-E085CLI
-      - SAPIENS-E095FOR
-      - SAPIENS-E075PRO
-      - SAPIENS-E006PAI
-      - SAPIENS-E090REP
-      - SAPIENS-E140RAT
-      - SAPIENS-E120PED
-      - SAPIENS-E120RAT
-      - SAPIENS-E012FAM
-      - SAPIENS-E140NFV
-      - SAPIENS-E120IPD
-      - SAPIENS-E091PLF
-      - SAPIENS-E210MVP
-      - SAPIENS-E080SER
-      - SAPIENS-E440IPC
-      - SAPIENS-E440RAT
-      - SAPIENS-E440NFC
-      - SAPIENS-E440ISC
-      - SAPIENS-E130DME
-      - SAPIENS-E130HFI
-      - SAPIENS-E130CSU
-      - SAPIENS-E130AGS
-      - SAPIENS-E090RAT
       host: 10.1.1.239
       port: 1521
       user: sapiens
+      default_service_name: DBPROD
+      default_replication_method: FULL_TABLE
+      batch_size: 5000
+      
+  - name: tap-e120ped
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E120PED
+
+  - name: tap-e120rat
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E120RAT
+
+  - name: tap-e120ipd
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E120IPD
+
+  - name: tap-e640rat
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E640RAT
+
+  - name: tap-e640lct
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E640LCT
+
+  - name: tap-e044ccu
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E044CCU
+
+  - name: tap-e045pla
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E045PLA
+
+  - name: tap-e070fil
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E070FIL
+
+  - name: tap-e043pcm
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E043PCM
+
+  - name: tap-e600mcc
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E600MCC
+
+  - name: tap-e640lot
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E640LOT
+
+  - name: tap-e644lnf
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E644LNF
+  
+  - name: tap-e140ipv
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E140IPV
+  
+  - name: tap-e140isv
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E140ISV
+  
+  - name: tap-e085cli
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E085CLI
+  
+  - name: tap-e095for
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E095FOR
+  
+  - name: tap-e075pro
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E075PRO
+  
+  - name: tap-e006pai
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E006PAI
+  
+  - name: tap-e090rep
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E090REP
+  
+  - name: tap-e140rat
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E140RAT
+  
+  - name: tap-e012fam
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E012FAM
+  
+  - name: tap-e140nfv
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E140NFV
+  
+  - name: tap-e091plf
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E091PLF
+  
+  - name: tap-e210mvp
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E210MVP
+  
+  - name: tap-e080ser
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E080SER
+  
+  - name: tap-e440ipc
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E440IPC
+  
+  - name: tap-e440rat
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E440IPC
+  
+  - name: tap-e440nfc
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E440NFC
+  
+  - name: tap-e440isc
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E440ISC
+  
+  - name: tap-e130dme
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E130DME
+  
+  - name: tap-e130hfi
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E130HFI
+  
+  - name: tap-e130csu
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E130CSU
+  
+  - name: tap-e130ags
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E130AGS
+  
+  - name: tap-e090rat
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E090RAT
+
+  loaders:
+  - name: target-postgres
+    variant: meltanolabs
+    pip_url: meltanolabs-target-postgres
+    config:
+      host: flamboyantly-epic-gemsbok.data-1.use1.tembo.io
+      port: 5432
+      user: postgres
+      database: postgres
+      batch_size_rows: 5000
+      default_target_schema: public
+      dialect+driver: postgresql+psycopg2
+      sqlalchemy_url: postgresql+psycopg2://airflow:airflow@postgres:5432/postgres
       metadata:
+        SAPIENS-E120RAT:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E120PED:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E120IPD:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
         SAPIENS-E640RAT:
           replication_method: INCREMENTAL
           replication_key: DATLCT
@@ -72,56 +305,81 @@ plugins:
           replication_key: DATALT
           DATALT:
             is-replication-key: true
+        SAPIENS-E070FIL:
+          replication_method: FULL_TABLE
         SAPIENS-E043PCM:
-          replication_method: INCREMENTAL
-          replication_key: DATALT
-          DATALT:
-            is-replication-key: true
+          replication_method: FULL_TABLE
         SAPIENS-E600MCC:
           replication_method: INCREMENTAL
           replication_key: DATGER
           DATGER:
             is-replication-key: true
-        SAPIENS-E120IPD:
-          replication_method: INCREMENTAL
-          replication_key: DATGER
-          DATGER:
-            is-replication-key: true
+        SAPIENS-E640LOT:
+          replication_method: FULL_TABLE
+        SAPIENS-E644LNF:
+          replication_method: FULL_TABLE
         SAPIENS-E140IPV:
           replication_method: INCREMENTAL
           replication_key: DATGER
           DATGER:
             is-replication-key: true
-        SAPIENS-E120RAT:
-          replication_method: INCREMENTAL
-          replication_key: DATGER
-          DATGER:
-            is-replication-key: true
-        SAPIENS-E120PED:
-          replication_method: INCREMENTAL
-          replication_key: DATGER
-          DATGER:
-            is-replication-key: true
-        SAPIENS-E075PRO:
-          replication_method: INCREMENTAL
-          replication_key: DATALT
-          DATALT:
-            is-replication-key: true
         SAPIENS-E140ISV:
+          replication_method: FULL_TABLE
+        SAPIENS-E085CLI:
+          replication_method: FULL_TABLE
+        SAPIENS-E095FOR:
+          replication_method: FULL_TABLE
+        SAPIENS-E075PRO:
+          replication_method: FULL_TABLE
+        SAPIENS-E006PAI:
+          replication_method: FULL_TABLE
+        SAPIENS-E090REP:
+          replication_method: FULL_TABLE
+        SAPIENS-E140RAT:
           replication_method: INCREMENTAL
           replication_key: DATGER
           DATGER:
             is-replication-key: true
-  loaders:
-  - name: target-postgres
-    variant: meltanolabs
-    pip_url: meltanolabs-target-postgres
-    config:
-      host: flamboyantly-epic-gemsbok.data-1.use1.tembo.io
-      port: 5432
-      user: postgres
-      database: postgres
-      default_target_schema: public
-      dialect+driver: postgresql+psycopg2
-      sqlalchemy_url: postgresql+psycopg2://airflow:airflow@postgres:5432/postgres
-      load_method: overwrite
+        SAPIENS-E012FAM:
+          replication_method: FULL_TABLE
+        SAPIENS-E140NFV:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E091PLF:
+          replication_method: FULL_TABLE
+        SAPIENS-E210MVP:
+          replication_method: INCREMENTAL
+          replication_key: DATMOV
+          DATMOV:
+            is-replication-key: true
+        SAPIENS-E080SER:
+          replication_method: FULL_TABLE
+        SAPIENS-E440IPC:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E440RAT:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E440NFC:
+          replication_method: INCREMENTAL
+          replication_key: DATGER
+          DATGER:
+            is-replication-key: true
+        SAPIENS-E440ISC:
+          replication_method: FULL_TABLE
+        SAPIENS-E130DME:
+          replication_method: FULL_TABLE
+        SAPIENS-E130HFI:
+          replication_method: FULL_TABLE
+        SAPIENS-E130CSU:
+          replication_method: FULL_TABLE
+        SAPIENS-E130AGS:
+          replication_method: FULL_TABLE
+        SAPIENS-E090RAT:
+          replication_method: FULL_TABLE
