@@ -1,0 +1,34 @@
+models:
+  - name: dim_conta
+    description: 
+      >
+      Dimensão de Contas.
+      Esta dimensão foi criada com base na tabela lancamentos, 
+      que por sua vez obteve quase todos estas colunas da tabela E045PLA.
+    columns:
+      - name: SK_CTA
+        description: "SK da conta"
+        tests:
+          - not_null
+      - name: CTARED
+        description: "Código da conta de redução"
+        tests:
+          - not_null
+      - name: DESCTA
+        description: "Descrição da conta"
+      - name: ABRCTA
+        description: "Abreviação da conta"
+      - name: CLACTA
+        description: "Classe da conta"
+    config:
+      pre-hook:
+        - >
+          ALTER TABLE gold.dim_conta
+          DROP CONSTRAINT IF EXISTS unique_ctared CASCADE;
+      post-hook:
+        - >
+          ALTER TABLE gold.dim_conta 
+          ADD CONSTRAINT unique_ctared UNIQUE ("SK_CTA");
+        - >
+          ALTER TABLE gold.dim_conta
+          ADD PRIMARY KEY ("SK_CTA");

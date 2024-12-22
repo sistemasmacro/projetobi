@@ -1,0 +1,51 @@
+models:
+  - name: dim_filial
+    description: 
+      >
+      Dimensão de Filiais.
+      Esta dimensão foi criada com base na tabela lancamentos E070FIL.
+    columns:
+      - name: SK_FIL
+        description: "SK da filial"
+        tests:
+          - not_null
+      - name: CODEMP      
+        description: "Código da empresa"
+      - name: NOMEMP
+        description: "Nome da empresa"
+      - name: SIGEMP
+        description: "Sigla da empresa"
+      - name: CODFIL      
+        description: "Código da filial"
+        tests:
+          - not_null
+      - name: NOMFIL      
+        description: "Nome da filial"
+      - name: SIGFIL      
+        description: "Sigla da filial"
+      - name: INSEST      
+        description: "Inscrição estadual da filial"
+      - name: NUMCGC      
+        description: "Número do CGC da filial"
+      - name: ENDFIL 
+        description: "Endereço da filial"
+      - name: CPLEND
+        description: "CPLEND da filial"
+      - name: CEPFIL
+        description: "CEP da filial"
+      - name: BAIFIL
+        description: "Bairro da filial"
+      - name: CIDFIL
+        description: "Cidade da filial"
+    config:
+      pre-hook:
+        - >
+          ALTER TABLE gold.dim_filial
+          DROP CONSTRAINT IF EXISTS unique_sk_fil CASCADE;
+      post-hook:
+        - >
+          ALTER TABLE gold.dim_filial 
+          ADD CONSTRAINT unique_sk_fil UNIQUE ("SK_FIL");
+        - >
+          ALTER TABLE gold.dim_filial
+          ADD PRIMARY KEY ("SK_FIL");

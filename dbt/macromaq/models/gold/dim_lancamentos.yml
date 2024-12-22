@@ -1,0 +1,43 @@
+models:
+  - name: dim_lancamentos
+    description: 
+      >
+      Dimensão de Lancamentos.
+      Esta dimensão foi criada com base na tabela lancamentos E640LCT.
+    columns:
+      - name: SK_LCT
+        description: "SK do lancamento"
+        tests:
+          - not_null
+      - name: NUMLCT      
+        description: "Número do lancamento"
+      - name: DOCLCT      
+        description: "Documento do lancamento"
+      - name: NUMFTC
+        description: "Número da fatura"
+      - name: TIPLCT      
+        description: "Tipo do lancamento"
+      - name: ORILCT      
+        description: "Origem do lancamento"
+      - name: CPLLCT      
+        description: "CPL do lancamento"
+      - name: SITLCT      
+        description: "Situação do lancamento"
+      - name: INDLCT
+        description: "Indicador de lancamento"
+      - name: ECDLCT
+        description: "ECD do lancamento"
+      - name: VLRLCT
+        description: "Valor do lancamento"
+    config:
+      pre-hook:
+        - >
+          ALTER TABLE gold.dim_lancamentos
+          DROP CONSTRAINT IF EXISTS unique_sk_lct CASCADE;
+      post-hook:
+        - >
+          ALTER TABLE gold.dim_lancamentos 
+          ADD CONSTRAINT unique_sk_lct UNIQUE ("SK_LCT");
+        - >
+          ALTER TABLE gold.dim_lancamentos
+          ADD PRIMARY KEY ("SK_LCT");

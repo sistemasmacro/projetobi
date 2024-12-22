@@ -1,0 +1,14 @@
+macromaq:
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5432
+      user: airflow
+      password: airflow
+      database: postgres
+      schema: public
+      job_execution_timeout_seconds: 300
+      job_retries: 3
+      threads: 1
+  target: dev

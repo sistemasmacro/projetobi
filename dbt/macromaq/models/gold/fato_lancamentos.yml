@@ -1,0 +1,57 @@
+models:
+  - name: fato_lancamentos
+    description: "Fato de lançamentos com dados de calendário associados"
+    columns:
+      - name: DATLCT
+        description: "Data do lançamento na tabela fato_lancamentos"
+        tests:
+          - relationships:
+              to: dim_calendario
+              field: DATA
+    config:
+      pre-hook:
+        - >
+          ALTER TABLE gold.fato_lancamentos
+          DROP CONSTRAINT IF EXISTS fk_dim_calendario,
+          DROP CONSTRAINT IF EXISTS fk_dim_centro_custo,
+          DROP CONSTRAINT IF EXISTS fk_dim_conta,
+          DROP CONSTRAINT IF EXISTS fk_dim_lancamentos,
+          DROP CONSTRAINT IF EXISTS fk_dim_rateio,
+          DROP CONSTRAINT IF EXISTS fk_dim_filial,
+          DROP CONSTRAINT IF EXISTS fk_dim_lote;
+      post-hook:
+        - >
+          ALTER TABLE gold.fato_lancamentos
+          ADD CONSTRAINT fk_dim_calendario
+          FOREIGN KEY ("DATLCT")
+          REFERENCES gold.dim_calendario ("DATA");
+        - >
+          ALTER TABLE gold.fato_lancamentos
+          ADD CONSTRAINT fk_dim_centro_custo
+          FOREIGN KEY ("SK_CCU")
+          REFERENCES gold.dim_centro_custo ("SK_CCU");
+        - >
+          ALTER TABLE gold.fato_lancamentos
+          ADD CONSTRAINT fk_dim_conta
+          FOREIGN KEY ("SK_CTA")
+          REFERENCES gold.dim_conta ("SK_CTA");
+        - >
+          ALTER TABLE gold.fato_lancamentos
+          ADD CONSTRAINT fk_dim_lancamentos
+          FOREIGN KEY ("SK_LCT")
+          REFERENCES gold.dim_lancamentos ("SK_LCT");
+        - >
+          ALTER TABLE gold.fato_lancamentos
+          ADD CONSTRAINT fk_dim_rateio
+          FOREIGN KEY ("SK_RAT")
+          REFERENCES gold.dim_rateio ("SK_RAT");
+        - >
+          ALTER TABLE gold.fato_lancamentos
+          ADD CONSTRAINT fk_dim_filial
+          FOREIGN KEY ("SK_FIL")
+          REFERENCES gold.dim_filial ("SK_FIL");
+        - >
+          ALTER TABLE gold.fato_lancamentos
+          ADD CONSTRAINT fk_dim_lote
+          FOREIGN KEY ("SK_LOT")
+          REFERENCES gold.dim_lote ("SK_LOT");

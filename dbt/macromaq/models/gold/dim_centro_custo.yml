@@ -1,0 +1,46 @@
+models:
+  - name: dim_centro_custo
+    description: 
+      >
+      Dimensão de Centros de Custo.
+      Esta dimensão foi criada com base na tabela lancamentos, 
+      que por sua vez obteve quase todos estas colunas da tabela E044CCU.
+    columns:
+      - name: SK_CCU
+        description: "SK do centro de custo"
+        tests:
+          - not_null
+      - name: CODCCU
+        description: "Código do centro de custo"
+        tests:
+          - not_null
+      - name: DESCCU
+        description: "Descrição do centro de custo"
+      - name: ABRCCU
+        description: "Abreviação do centro de custo"
+      - name: TIPCCU
+        description: "Tipo do centro de custo"
+      - name: MSKCCU
+        description: "Mascara do centro de custo"
+      - name: CCUPAI
+        description: "Centro de custo pai"
+      - name: GRUCCU
+        description: "Grupo do centro de custo"
+      - name: NIVCCU
+        description: "Nível do centro de custo"
+      - name: POSCCU
+        description: "Posição do centro de custo"
+      - name: ANASIN
+        description: "Contas Analíticas e Sintéticas"
+    config:
+      pre-hook:
+        - >
+          ALTER TABLE gold.dim_centro_custo 
+          DROP CONSTRAINT IF EXISTS unique_codccu CASCADE;
+      post-hook:
+        - >
+          ALTER TABLE gold.dim_centro_custo 
+          ADD CONSTRAINT unique_codccu UNIQUE ("SK_CCU");
+        - >
+          ALTER TABLE gold.dim_centro_custo 
+          ADD PRIMARY KEY ("SK_CCU");

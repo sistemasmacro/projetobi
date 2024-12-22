@@ -1,0 +1,167 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: postgres
+    schema: public
+    tables:
+      - name: E640LCT
+        columns:
+          - name: CODEMP
+            description: Código da empresa
+          - name: NUMLCT
+            description: Número do lançamento
+          - name: TIPLCT
+            description: Tipo de lançamento
+          - name: ORILCT
+            description: Origem do lançamento
+          - name: CODFIL
+            description: Código da filial
+          - name: DATLCT
+            description: Data do lançamento
+          - name: CTADEB
+            description: Conta de debito
+          - name: CTACRE
+            description: Conta de credito
+          - name: VLRLCT
+            description: Valor do lançamento
+          - name: CODHPD
+            description: CONFIRMAR DESCRIÇÃO
+          - name: CPLLCT
+            description: Complemento do lançamento
+          - name: NUMLOT
+            description: Número do lote
+          - name: TEMRAT
+            description: Tem rateio
+          - name: TEMAUX
+            description: Tem auxiliar
+          - name: DOCLCT
+            description: Documento do lançamento
+          - name: CGCCPF
+            description: CGC ou CPF
+          - name: SITLCT
+            description: Situação do lançamento
+          - name: CODUSU
+            description: Código do usuário
+          - name: DATENT
+            description: Data de entrada
+          - name: HORENT
+            description: Hora de entrada
+          - name: OBSCPL
+            description: Observação do complemento
+          - name: NUMFTC
+            description: CONFIRMAR DESCRIÇÃO
+          - name: CGCCRE
+            description: CONFIRMAR DESCRIÇÃO
+          - name: INDLCT
+            description: Indicador de lançamento
+          - name: ECDLCT
+            description: CONFIRMAR DESCRIÇÃO
+          - name: DATEXT
+            description: CONFIRMAR DESCRIÇÃO
+          - name: IDEGED
+            description: CONFIRMAR DESCRIÇÃO
+      - name: E640RAT
+        columns:
+          - name: CODEMP
+            description: Código da empresa
+          - name: NUMLCT
+            description: Número do lançamento
+          - name: CTARED
+            description: Conta de redução
+          - name: CODCCU
+            description: Código do centro de custo
+          - name: DATLCT
+            description: Data do lançamento
+          - name: FILRAT
+            description: Filial de rateio
+          - name: PERRAT
+            description: Percentual de rateio
+          - name: VLRRAT
+            description: Valor do rateio
+          - name: SITRAT
+            description: Situação do rateio
+          - name: DEBCRE
+            description: Dívida ou crédito
+          - name: CTAFIN
+            description: Conta financeiro
+          - name: NUMFTC
+            description: Número da fatura
+      - name: E600MCC
+        columns:
+          - name: CODEMP
+            description: Código da empresa
+          - name: NUMCCO
+            description: Número da conta corrente
+          - name: DATMOV
+            description: Data da movimentação
+          - name: SEQMOV
+            description: Sequência da movimentação
+          - name: CODTNS
+            description: Código da transação
+          - name: ORIMCC
+            description: Origem da movimentação
+          - name: TIPMCC
+            description: Tipo da movimentação
+          - name: CODNTG
+            description: Código da natureza da movimentação
+          - name: DATCTB
+            description: Data da contabilização
+          - name: CODDOC
+            description: Código do documento
+          - name: DOCMOV
+            description: Documento da movimentação
+          - name: NUMPRJ
+            description: Número do projeto
+          - name: CODFPJ
+            description: Código do projeto
+          - name: CTAFIN
+            description: Conta de financiamento
+          - name: CTARED
+            description: Conta de reembolso
+          - name: CODCCU
+            description: Código do centro de custo
+          - name: HISMOV
+            description: Histórico da movimentação
+          - name: NROCHE
+            description: Número do cheque
+          - name: VLRMOV
+            description: Valor da movimentação
+          - name: DEBCRE
+            description: Dívida ou crédito
+          - name: NOMREC
+            description: Nome do recebedor
+          - name: CPLMOV
+            description: Complemento da movimentação
+          - name: DATLIB
+            description: Data da liberação
+          - name: VLRPIS
+            description: Valor do PIS
+          - name: VLRBPR
+            description: Valor do BPR
+          - name: VLRCOF
+            description: Valor do cofins
+          - name: VLRBCR
+            description: Valor do BCR
+          - name: ORICON
+            description: Origem da conta
+          - name: DATCON
+            description: Data da conta
+          - name: SEQCON
+            description: Sequência da conta
+          - name: CODFIL
+            description: Código do filial
+          - name: TIPCNC
+            description: Tipo de conta
+          - name: USUCNC
+            description: Usuário da conta
+          - name: DATCNC
+            description: Data da conta
+          - name: HORCNC
+            description: Hora da conta
+      - name: E640LOT
+      - name: E046HPD
+      - name: E044CCU
+      - name: E045PLA
+      - name: E070FIL
+      - name: E070EMP

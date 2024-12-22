@@ -1,0 +1,29 @@
+models:
+  - name: dim_rateio
+    description: 
+      >
+      Dimensão de Rateios.
+      Esta dimensão foi criada com base na tabela lancamentos E640RAT.
+    columns:
+      - name: SK_RAT
+        description: "SK do rateio"
+        tests:
+          - not_null
+      - name: SITRAT      
+        description: "Situação do rateio"
+      - name: FILRAT      
+        description: "Filial do rateio"
+      - name: TEMRAT      
+        description: "Existencia do rateio"
+    config:
+      pre-hook:
+        - >
+          ALTER TABLE gold.dim_rateio
+          DROP CONSTRAINT IF EXISTS unique_sk_rat CASCADE;
+      post-hook:
+        - >
+          ALTER TABLE gold.dim_rateio 
+          ADD CONSTRAINT unique_sk_rat UNIQUE ("SK_RAT");
+        - >
+          ALTER TABLE gold.dim_rateio
+          ADD PRIMARY KEY ("SK_RAT");

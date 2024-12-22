@@ -1,0 +1,29 @@
+models:
+  - name: dim_lote
+    description: 
+      >
+      Dimensão de Lotes.
+      Esta dimensão foi criada com base na tabela lancamentos E640LOT.
+    columns:
+      - name: SK_LOT
+        description: "SK do lote"
+        tests:
+          - not_null
+      - name: NUMLOT 
+        description: "Número do lote"
+      - name: DESLOT
+        description: "Descrição do lote"
+      - name: SITLOT
+        description: "Situação do lote"
+    config:
+      pre-hook:
+        - >
+          ALTER TABLE gold.dim_lote
+          DROP CONSTRAINT IF EXISTS unique_sk_lot CASCADE;
+      post-hook:
+        - >
+          ALTER TABLE gold.dim_lote 
+          ADD CONSTRAINT unique_sk_lot UNIQUE ("SK_LOT");
+        - >
+          ALTER TABLE gold.dim_lote
+          ADD PRIMARY KEY ("SK_LOT");

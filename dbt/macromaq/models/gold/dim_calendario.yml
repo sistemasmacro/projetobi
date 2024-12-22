@@ -1,0 +1,138 @@
+models:
+  - name: dim_calendario
+    description: 
+      >
+      Dimensao Calendário.
+      Esta dimensão foi criada com base nas datas mínima e máxima do campo DATLCT 
+      encontradas na tabela lancamentos.
+      A partir destas datas, o calendário é criado, além dos campos que podem descrever
+      melhor os detalhes de cada data, ajudando nos filtros de datas na tabela fato_lancamentos
+      e consequente na geracao de relatorios.
+    columns:
+      - name: DATA
+        details: 
+          type: date
+          not_null: true
+        tests:
+          - not_null
+          - unique
+        description: 
+          >
+          Datas obtidas a partir da mínima e máxima data encontrada na tabela movimentos, 
+          mais especificamente atraves do campo DATLCT
+      - name: PRIMEIRO_DIA_DO_MES
+        description: "Data que representa o primeiro dia do mês"
+        details:
+          type: date
+          not_null: true
+        tests:
+          - not_null
+      - name: ULTIMO_DIA_DO_MES
+        description: "Data que representa o último dia do mês"
+        details:
+          type: date
+          not_null: true
+        tests:
+          - not_null
+      - name: ANO
+        description: "Ano do calendário"
+        details:
+          type: numeric
+          not_null: true
+        tests:
+          - not_null
+      - name: SEMESTRE
+        description: "Semestre do calendário"
+        details:
+          type: numeric
+          not_null: true
+        tests:
+          - not_null
+      - name: TRIMESTRE
+        description: "Trimestre do calendário"
+        details:
+          type: numeric
+          not_null: true
+        tests:
+          - not_null
+      - name: TRIMESTRE_ANO
+        description: "Trimestre do calendário com o ano"
+        details:
+          type: text
+          not_null: true
+        tests:
+          - not_null
+      - name: MES
+        description: "Mês do calendário"
+        details:
+          type: numeric
+          not_null: true
+        tests:
+          - not_null
+      - name: MES_ANO
+        description: "Mês do calendário com o ano"
+        details:
+          type: text
+          not_null: true
+        tests:
+          - not_null
+      - name: MES_DESCRICAO
+        description: "Descrição do mês"
+        details:
+          type: text
+          not_null: true
+        tests:
+          - not_null
+      - name: SEMANA
+        description: "Semana do ano"
+        details:
+          type: numeric
+          not_null: true
+        tests:
+          - not_null
+      - name: SEMANA_DO_MES
+        description: "Semana do mês"
+        details:
+          type: numeric
+          not_null: true
+        tests:
+          - not_null
+      - name: DIA
+        description: "Dia do mês"
+        details:
+          type: numeric
+          not_null: true
+        tests:
+          - not_null
+      - name: DIA_DO_ANO
+        description: "Dia do ano"
+        details:
+          type: numeric
+          not_null: true
+        tests:
+          - not_null
+      - name: DIA_DA_SEMANA
+        description: "Dia da semana"
+        details:
+          type: numeric
+          not_null: true
+        tests:
+          - not_null
+      - name: DIA_DA_SEMANA_DESCRICAO
+        description: "Descrição do dia da semana"
+        details:
+          type: text
+          not_null: true
+        tests:
+          - not_null
+    config:
+      pre-hook:
+        - >
+          ALTER TABLE gold.dim_calendario
+          DROP CONSTRAINT IF EXISTS unique_data CASCADE;
+      post-hook:
+        - >
+          ALTER TABLE gold.dim_calendario ADD CONSTRAINT unique_data UNIQUE ("DATA");
+        - >
+          ALTER TABLE gold.dim_calendario
+          ADD PRIMARY KEY ("DATA");
