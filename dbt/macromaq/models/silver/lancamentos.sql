@@ -71,8 +71,8 @@ E640RAT_TREATED AS
             RAT."FILRAT",
             RAT."PERRAT",
             CASE 
-                WHEN RAT."DEBCRE" = 'CRÉDITO' THEN RAT."VLRRAT"
-                WHEN RAT."DEBCRE" = 'DÉBITO' THEN -RAT."VLRRAT"
+                WHEN RAT."DEBCRE" = 'C' THEN RAT."VLRRAT"
+                WHEN RAT."DEBCRE" = 'D' THEN -RAT."VLRRAT"
             END AS "VLRRAT",
             RAT."SITRAT",
             CASE 

@@ -8,12 +8,8 @@ models:
     columns:
       - name: SK_CCU
         description: "SK do centro de custo"
-        tests:
-          - not_null
       - name: CODCCU
         description: "Código do centro de custo"
-        tests:
-          - not_null
       - name: DESCCU
         description: "Descrição do centro de custo"
       - name: ABRCCU

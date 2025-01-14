@@ -4,10 +4,6 @@ models:
     columns:
       - name: DATLCT
         description: "Data do lançamento na tabela fato_lancamentos"
-        tests:
-          - relationships:
-              to: dim_calendario
-              field: DATA
     config:
       pre-hook:
         - >

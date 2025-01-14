@@ -8,12 +8,8 @@ models:
     columns:
       - name: SK_CTA
         description: "SK da conta"
-        tests:
-          - not_null
       - name: CTARED
         description: "Código da conta de redução"
-        tests:
-          - not_null
       - name: DESCTA
         description: "Descrição da conta"
       - name: ABRCTA

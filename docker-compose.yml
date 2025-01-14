@@ -16,6 +16,11 @@ x-airflow-common:
   environment:
     - AIRFLOW__CORE__BASE_URL=http://webserver:8080
     - DOCKER_HOST=tcp://host.docker.internal:2375
+    - MELTANO_PATH=${MELTANO_PATH}
+    - MELTANO_HACK_PATH=${MELTANO_HACK_PATH}
+    - ENV=${ENV}
+    - PG_USER=${PG_USER}
+    - PG_PASS=${PG_PASS}
   user: root
   depends_on:
     redis:
@@ -68,18 +73,27 @@ services:
       timeout: 10s
       retries: 5
     restart: always
+    networks:
+      - airflow-network
   
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
     restart: always
+    networks:
+      - airflow-network
   
   airflow-worker:
     <<: *airflow-common
     command: celery worker
     restart: always
+    networks:
+      - airflow-network
     environment:
       - DOCKER_HOST=tcp://host.docker.internal:2375
+      - ENV=${ENV}
+      - PG_USER=${PG_USER}
+      - PG_PASS=${PG_PASS}
     deploy:
       resources:
         limits:
@@ -104,6 +118,7 @@ services:
       context: .
       dockerfile: Dockerfile.meltano
     image: meltano
+    user: root
     profiles:
       - build_only
     container_name: macromaq-meltano

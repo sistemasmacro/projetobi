@@ -15,18 +15,22 @@ RUN mkdir -p /opt/oracle && \
     ldconfig
 
 ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_21_10:$LD_LIBRARY_PATH
+ENV TNS_ADMIN=/opt/oracle/instantclient_21_10/network/admin
 ENV ORA_PYTHON_DRIVER_TYPE=thin
 
 COPY requirements_meltano.txt .
 
 RUN pip install --upgrade pip
+RUN pip install --upgrade virtualenv pip setuptools wheel oracledb
 RUN pip install -r requirements_meltano.txt
 
 COPY hack/meltano.sh /opt/meltano/hack/meltano.sh
+
 RUN chmod +x ./hack/meltano.sh
 RUN chmod +x .
 
 RUN useradd -ms /bin/bash meltano
-USER meltano
+
+USER root
 
 WORKDIR /opt/meltano

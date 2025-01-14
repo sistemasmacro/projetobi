@@ -8,7 +8,7 @@ DATE_SERIES AS (
     SELECT
         generate_series(
             (SELECT start_date FROM DATE_RANGES),
-            (SELECT end_date FROM DATE_RANGES),
+            (SELECT end_date FROM DATE_RANGES) + INTERVAL '1 day' - INTERVAL '1 day',
             '1 day'::interval
         ) AS "DATA"
     FROM DATE_RANGES

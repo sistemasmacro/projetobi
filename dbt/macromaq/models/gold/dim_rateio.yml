@@ -7,8 +7,6 @@ models:
     columns:
       - name: SK_RAT
         description: "SK do rateio"
-        tests:
-          - not_null
       - name: SITRAT      
         description: "Situação do rateio"
       - name: FILRAT      

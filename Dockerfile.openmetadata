@@ -1,0 +1,9 @@
+# Dockerfile for OpenMetadata
+FROM python:3.10-slim
+
+WORKDIR /opt/openmetadata
+
+RUN apt-get update && \
+    apt-get install -y git \
+    wget https://github.com/open-metadata/OpenMetadata/releases/download/1.5.10-release/docker-compose-postgres.yml
+

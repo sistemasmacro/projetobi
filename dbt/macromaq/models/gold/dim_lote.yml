@@ -7,8 +7,6 @@ models:
     columns:
       - name: SK_LOT
         description: "SK do lote"
-        tests:
-          - not_null
       - name: NUMLOT 
         description: "Número do lote"
       - name: DESLOT

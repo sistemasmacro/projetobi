@@ -11,12 +11,14 @@ plugins:
     variant: s7clarke10
     pip_url: git+https://github.com/s7clarke10/pipelinewise-tap-oracle.git
     config:
-      host: 10.1.1.239
-      port: 1521
-      user: sapiens
+      host: ${ORA_HOST}
+      port: ${ORA_PORT}
+      user: ${ORA_USER}
+      password: ${ORA_PASS}
       default_service_name: DBPROD
       default_replication_method: FULL_TABLE
       batch_size: 5000
+      encoding: "WE8MSWIN1252"
       
   - name: tap-e120ped
     inherit_from: tap-oracle
@@ -73,6 +75,13 @@ plugins:
       service_name: DBPROD
       filter_tables:
       - SAPIENS-E070FIL
+
+  - name: tap-e070emp
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E070EMP
 
   - name: tap-e043pcm
     inherit_from: tap-oracle
@@ -255,20 +264,25 @@ plugins:
       service_name: DBPROD
       filter_tables:
       - SAPIENS-E090RAT
+  
+  - name: tap-e046hpd
+    inherit_from: tap-oracle
+    config:
+      service_name: DBPROD
+      filter_tables:
+      - SAPIENS-E046HPD
 
   loaders:
   - name: target-postgres
     variant: meltanolabs
     pip_url: meltanolabs-target-postgres
     config:
-      host: flamboyantly-epic-gemsbok.data-1.use1.tembo.io
-      port: 5432
-      user: postgres
-      database: postgres
       batch_size_rows: 5000
       default_target_schema: public
       dialect+driver: postgresql+psycopg2
-      sqlalchemy_url: postgresql+psycopg2://airflow:airflow@postgres:5432/postgres
+      sqlalchemy_url: postgresql+psycopg2://${PG_USER}:${PG_PASS}@${PG_HOST}:${PG_PORT}/postgres
+      client_encoding: utf-8
+      fail_on_error: true
       metadata:
         SAPIENS-E120RAT:
           replication_method: INCREMENTAL
@@ -305,7 +319,7 @@ plugins:
           replication_key: DATALT
           DATALT:
             is-replication-key: true
-        SAPIENS-E070FIL:
+        SAPIENS-E070EMP:
           replication_method: FULL_TABLE
         SAPIENS-E043PCM:
           replication_method: FULL_TABLE
@@ -382,4 +396,6 @@ plugins:
         SAPIENS-E130AGS:
           replication_method: FULL_TABLE
         SAPIENS-E090RAT:
+          replication_method: FULL_TABLE
+        SAPIENS-E046HPD:
           replication_method: FULL_TABLE

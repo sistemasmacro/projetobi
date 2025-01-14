@@ -39,7 +39,7 @@ models:
       tags:
         - silver
       schema: silver
-      +materialized: view
+      +materialized: table
     gold:
       +constraints_enabled: true
       +docs:

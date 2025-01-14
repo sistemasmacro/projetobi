@@ -2,13 +2,24 @@ macromaq:
   outputs:
     dev:
       type: postgres
-      host: localhost
+      host: 10.1.1.41
       port: 5432
-      user: airflow
-      password: airflow
+      user: "{{ env_var('PG_USER') }}"
+      password: "{{ env_var('PG_PASS') }}"
       database: postgres
       schema: public
       job_execution_timeout_seconds: 300
       job_retries: 3
       threads: 1
-  target: dev
+    prod:
+      type: postgres
+      host: 10.1.1.41
+      port: 5432
+      user: "{{ env_var('PG_USER') }}"
+      password: "{{ env_var('PG_PASS') }}"
+      database: postgres
+      schema: public
+      job_execution_timeout_seconds: 300
+      job_retries: 3
+      threads: 1
+  target: "{{ env_var('ENV') }}"

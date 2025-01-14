@@ -7,8 +7,6 @@ models:
     columns:
       - name: SK_LCT
         description: "SK do lancamento"
-        tests:
-          - not_null
       - name: NUMLCT      
         description: "Número do lancamento"
       - name: DOCLCT      

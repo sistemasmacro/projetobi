@@ -1,4 +1,6 @@
 #!/bin/bash
+# set -e
+
 if [ -z "$1" ]; then
   echo "Usage: $0 <table_name>"
   exit 1
@@ -6,8 +8,10 @@ fi
 
 TABLE_NAME=$1
 
-echo "Installing general dependencies..."
+meltano lock --update --all
+
 meltano install extractor tap-oracle
+
 meltano install loader target-postgres
 
 echo "Installing extractor for table: $TABLE_NAME..."

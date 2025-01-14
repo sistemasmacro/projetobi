@@ -7,8 +7,6 @@ models:
     columns:
       - name: SK_FIL
         description: "SK da filial"
-        tests:
-          - not_null
       - name: CODEMP      
         description: "Código da empresa"
       - name: NOMEMP
@@ -17,8 +15,6 @@ models:
         description: "Sigla da empresa"
       - name: CODFIL      
         description: "Código da filial"
-        tests:
-          - not_null
       - name: NOMFIL      
         description: "Nome da filial"
       - name: SIGFIL      

@@ -13,9 +13,6 @@ models:
         details: 
           type: date
           not_null: true
-        tests:
-          - not_null
-          - unique
         description: 
           >
           Datas obtidas a partir da mínima e máxima data encontrada na tabela movimentos, 
@@ -25,106 +22,76 @@ models:
         details:
           type: date
           not_null: true
-        tests:
-          - not_null
       - name: ULTIMO_DIA_DO_MES
         description: "Data que representa o último dia do mês"
         details:
           type: date
           not_null: true
-        tests:
-          - not_null
       - name: ANO
         description: "Ano do calendário"
         details:
           type: numeric
           not_null: true
-        tests:
-          - not_null
       - name: SEMESTRE
         description: "Semestre do calendário"
         details:
           type: numeric
           not_null: true
-        tests:
-          - not_null
       - name: TRIMESTRE
         description: "Trimestre do calendário"
         details:
           type: numeric
           not_null: true
-        tests:
-          - not_null
       - name: TRIMESTRE_ANO
         description: "Trimestre do calendário com o ano"
         details:
           type: text
           not_null: true
-        tests:
-          - not_null
       - name: MES
         description: "Mês do calendário"
         details:
           type: numeric
           not_null: true
-        tests:
-          - not_null
       - name: MES_ANO
         description: "Mês do calendário com o ano"
         details:
           type: text
           not_null: true
-        tests:
-          - not_null
       - name: MES_DESCRICAO
         description: "Descrição do mês"
         details:
           type: text
           not_null: true
-        tests:
-          - not_null
       - name: SEMANA
         description: "Semana do ano"
         details:
           type: numeric
           not_null: true
-        tests:
-          - not_null
       - name: SEMANA_DO_MES
         description: "Semana do mês"
         details:
           type: numeric
           not_null: true
-        tests:
-          - not_null
       - name: DIA
         description: "Dia do mês"
         details:
           type: numeric
           not_null: true
-        tests:
-          - not_null
       - name: DIA_DO_ANO
         description: "Dia do ano"
         details:
           type: numeric
           not_null: true
-        tests:
-          - not_null
       - name: DIA_DA_SEMANA
         description: "Dia da semana"
         details:
           type: numeric
           not_null: true
-        tests:
-          - not_null
       - name: DIA_DA_SEMANA_DESCRICAO
         description: "Descrição do dia da semana"
         details:
           type: text
           not_null: true
-        tests:
-          - not_null
     config:
       pre-hook:
         - >

@@ -5,7 +5,7 @@ SELECT DISTINCT
     "NUMFTC",
     "TIPLCT",
     "ORILCT",
-    "SITLCT"--,
+    "SITLCT",
     -- "CPLLCT",
     -- "OBSCPL",
     -- "INDLCT",
@@ -17,6 +17,6 @@ SELECT DISTINCT
     -- "IDEGED",
     -- "CTARED",
     -- "SITRAT",
-    -- "DEBCRE",
+    "DEBCRE"
     -- "CTAFIN"
 FROM {{ ref('lancamentos') }}

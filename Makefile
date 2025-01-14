@@ -21,9 +21,9 @@ $(foreach dir,$(DIRECTORIES),$(if $(wildcard $(dir)),,$(shell mkdir -p $(dir))))
 build: create-dirs ##@Commands Build docker image bi_airflow
 	# @./hack/create_pip_conf.sh
 	@docker compose down
+	@docker network inspect airflow-network >/dev/null 2>&1 || docker network create airflow-network
 	@docker compose build --no-cache
 	@docker compose --profile build_only build meltano --no-cache
-	@docker network create airflow-network
 	@docker image prune -f
 
 ## Uses docker compose to upload the airflow environment and the other necessary containers
@@ -36,12 +36,6 @@ up: create-dirs
 .PHONY: down
 down:
 	@docker compose down
-
-## Publish the built bi_airflow image
-.PHONY: push
-push:  ##@Commands Publish the built bi_airflow image
-	@echo "Push docker registry.neoway.com.br/bi/bi_airflow:latest image in registry."
-	@docker compose push
 
 ## Create directories if they don't exist
 .PHONY: create-dirs
