@@ -2,13 +2,13 @@ models:
   - name: dim_rateio
     description: 
       >
-      Dimensão de Rateios.
-      Esta dimensão foi criada com base na tabela lancamentos E640RAT.
+      Dimensao de Rateios.
+      Esta dimensao foi criada com base na tabela lancamentos E640RAT.
     columns:
       - name: SK_RAT
         description: "SK do rateio"
       - name: SITRAT      
-        description: "Situação do rateio"
+        description: "Situacao do rateio"
       - name: FILRAT      
         description: "Filial do rateio"
       - name: TEMRAT      
