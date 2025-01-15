@@ -2,17 +2,17 @@ models:
   - name: dim_lancamentos
     description: 
       >
-      Dimensão de Lancamentos.
-      Esta dimensão foi criada com base na tabela lancamentos E640LCT.
+      Dimensao de Lancamentos.
+      Esta dimensao foi criada com base na tabela lancamentos E640LCT.
     columns:
       - name: SK_LCT
         description: "SK do lancamento"
       - name: NUMLCT      
-        description: "Número do lancamento"
+        description: "Numero do lancamento"
       - name: DOCLCT      
         description: "Documento do lancamento"
       - name: NUMFTC
-        description: "Número da fatura"
+        description: "Numero da fatura"
       - name: TIPLCT      
         description: "Tipo do lancamento"
       - name: ORILCT      
@@ -20,7 +20,7 @@ models:
       - name: CPLLCT      
         description: "CPL do lancamento"
       - name: SITLCT      
-        description: "Situação do lancamento"
+        description: "Situacao do lancamento"
       - name: INDLCT
         description: "Indicador de lancamento"
       - name: ECDLCT
