@@ -66,7 +66,7 @@ E640RAT_TREATED AS
             UPPER(PLA."DESCTA") AS "DESCTA",
             UPPER(PLA."ABRCTA") AS "ABRCTA",
             PLA."CLACTA",
-            -- DATAS E VALORES DOS LANÇAMENTOS
+            -- DATAS E VALORES DOS LANCAMENTOS
             CAST(RAT."DATLCT" AS DATE) AS "DATLCT",
             RAT."FILRAT",
             RAT."PERRAT",
