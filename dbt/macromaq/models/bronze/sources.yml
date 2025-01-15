@@ -8,71 +8,71 @@ sources:
       - name: E640LCT
         columns:
           - name: CODEMP
-            description: Código da empresa
+            description: Codigo da empresa
           - name: NUMLCT
-            description: Número do lançamento
+            description: Numero do lancamento
           - name: TIPLCT
-            description: Tipo de lançamento
+            description: Tipo de lancamento
           - name: ORILCT
-            description: Origem do lançamento
+            description: Origem do lancamento
           - name: CODFIL
-            description: Código da filial
+            description: Codigo da filial
           - name: DATLCT
-            description: Data do lançamento
+            description: Data do lancamento
           - name: CTADEB
             description: Conta de debito
           - name: CTACRE
             description: Conta de credito
           - name: VLRLCT
-            description: Valor do lançamento
+            description: Valor do lancamento
           - name: CODHPD
-            description: CONFIRMAR DESCRIÇÃO
+            description: CONFIRMAR DESCRICAO
           - name: CPLLCT
-            description: Complemento do lançamento
+            description: Complemento do lancamento
           - name: NUMLOT
-            description: Número do lote
+            description: Numero do lote
           - name: TEMRAT
             description: Tem rateio
           - name: TEMAUX
             description: Tem auxiliar
           - name: DOCLCT
-            description: Documento do lançamento
+            description: Documento do lancamento
           - name: CGCCPF
             description: CGC ou CPF
           - name: SITLCT
-            description: Situação do lançamento
+            description: Situacao do lancamento
           - name: CODUSU
-            description: Código do usuário
+            description: Codigo do usuario
           - name: DATENT
             description: Data de entrada
           - name: HORENT
             description: Hora de entrada
           - name: OBSCPL
-            description: Observação do complemento
+            description: Observacao do complemento
           - name: NUMFTC
-            description: CONFIRMAR DESCRIÇÃO
+            description: CONFIRMAR DESCRICAO
           - name: CGCCRE
-            description: CONFIRMAR DESCRIÇÃO
+            description: CONFIRMAR DESCRICAO
           - name: INDLCT
-            description: Indicador de lançamento
+            description: Indicador de lancamento
           - name: ECDLCT
-            description: CONFIRMAR DESCRIÇÃO
+            description: CONFIRMAR DESCRICAO
           - name: DATEXT
-            description: CONFIRMAR DESCRIÇÃO
+            description: CONFIRMAR DESCRICAO
           - name: IDEGED
-            description: CONFIRMAR DESCRIÇÃO
+            description: CONFIRMAR DESCRICAO
       - name: E640RAT
         columns:
           - name: CODEMP
-            description: Código da empresa
+            description: Codigo da empresa
           - name: NUMLCT
-            description: Número do lançamento
+            description: Numero do lancamento
           - name: CTARED
-            description: Conta de redução
+            description: Conta de reducao
           - name: CODCCU
-            description: Código do centro de custo
+            description: Codigo do centro de custo
           - name: DATLCT
-            description: Data do lançamento
+            description: Data do lancamento
           - name: FILRAT
             description: Filial de rateio
           - name: PERRAT
@@ -80,61 +80,61 @@ sources:
           - name: VLRRAT
             description: Valor do rateio
           - name: SITRAT
-            description: Situação do rateio
+            description: Situacao do rateio
           - name: DEBCRE
-            description: Dívida ou crédito
+            description: Divida ou credito
           - name: CTAFIN
             description: Conta financeiro
           - name: NUMFTC
-            description: Número da fatura
+            description: Numero da fatura
       - name: E600MCC
         columns:
           - name: CODEMP
-            description: Código da empresa
+            description: Codigo da empresa
           - name: NUMCCO
-            description: Número da conta corrente
+            description: Numero da conta corrente
           - name: DATMOV
-            description: Data da movimentação
+            description: Data da movimentacao
           - name: SEQMOV
-            description: Sequência da movimentação
+            description: Sequencia da movimentacao
           - name: CODTNS
-            description: Código da transação
+            description: Codigo da transacao
           - name: ORIMCC
-            description: Origem da movimentação
+            description: Origem da movimentacao
           - name: TIPMCC
-            description: Tipo da movimentação
+            description: Tipo da movimentacao
           - name: CODNTG
-            description: Código da natureza da movimentação
+            description: Codigo da natureza da movimentacao
           - name: DATCTB
-            description: Data da contabilização
+            description: Data da contabilizacao
           - name: CODDOC
-            description: Código do documento
+            description: Codigo do documento
           - name: DOCMOV
-            description: Documento da movimentação
+            description: Documento da movimentacao
           - name: NUMPRJ
-            description: Número do projeto
+            description: Numero do projeto
           - name: CODFPJ
-            description: Código do projeto
+            description: Codigo do projeto
           - name: CTAFIN
             description: Conta de financiamento
           - name: CTARED
             description: Conta de reembolso
           - name: CODCCU
-            description: Código do centro de custo
+            description: Codigo do centro de custo
           - name: HISMOV
-            description: Histórico da movimentação
+            description: Historico da movimentacao
           - name: NROCHE
-            description: Número do cheque
+            description: Numero do cheque
           - name: VLRMOV
-            description: Valor da movimentação
+            description: Valor da movimentacao
           - name: DEBCRE
-            description: Dívida ou crédito
+            description: Divida ou credito
           - name: NOMREC
             description: Nome do recebedor
           - name: CPLMOV
-            description: Complemento da movimentação
+            description: Complemento da movimentacao
           - name: DATLIB
-            description: Data da liberação
+            description: Data da liberacao
           - name: VLRPIS
             description: Valor do PIS
           - name: VLRBPR
@@ -148,13 +148,13 @@ sources:
           - name: DATCON
             description: Data da conta
           - name: SEQCON
-            description: Sequência da conta
+            description: Sequencia da conta
           - name: CODFIL
-            description: Código do filial
+            description: Codigo do filial
           - name: TIPCNC
             description: Tipo de conta
           - name: USUCNC
-            description: Usuário da conta
+            description: Usuario da conta
           - name: DATCNC
             description: Data da conta
           - name: HORCNC
@@ -165,3 +165,4 @@ sources:
       - name: E045PLA
       - name: E070FIL
       - name: E070EMP
+      
