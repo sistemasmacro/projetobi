@@ -2,17 +2,17 @@ models:
   - name: dim_lote
     description: 
       >
-      Dimensão de Lotes.
-      Esta dimensão foi criada com base na tabela lancamentos E640LOT.
+      Dimensao de Lotes.
+      Esta dimensao foi criada com base na tabela lancamentos E640LOT.
     columns:
       - name: SK_LOT
         description: "SK do lote"
       - name: NUMLOT 
-        description: "Número do lote"
+        description: "Numero do lote"
       - name: DESLOT
-        description: "Descrição do lote"
+        description: "Descricao do lote"
       - name: SITLOT
-        description: "Situação do lote"
+        description: "Situacao do lote"
     config:
       pre-hook:
         - >
