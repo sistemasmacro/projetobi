@@ -2,29 +2,29 @@ models:
   - name: dim_filial
     description: 
       >
-      Dimensão de Filiais.
-      Esta dimensão foi criada com base na tabela lancamentos E070FIL.
+      Dimensao de Filiais.
+      Esta dimensao foi criada com base na tabela lancamentos E070FIL.
     columns:
       - name: SK_FIL
         description: "SK da filial"
       - name: CODEMP      
-        description: "Código da empresa"
+        description: "Codigo da empresa"
       - name: NOMEMP
         description: "Nome da empresa"
       - name: SIGEMP
         description: "Sigla da empresa"
       - name: CODFIL      
-        description: "Código da filial"
+        description: "Codigo da filial"
       - name: NOMFIL      
         description: "Nome da filial"
       - name: SIGFIL      
         description: "Sigla da filial"
       - name: INSEST      
-        description: "Inscrição estadual da filial"
+        description: "Inscricao estadual da filial"
       - name: NUMCGC      
-        description: "Número do CGC da filial"
+        description: "Numero do CGC da filial"
       - name: ENDFIL 
-        description: "Endereço da filial"
+        description: "Endereco da filial"
       - name: CPLEND
         description: "CPLEND da filial"
       - name: CEPFIL
