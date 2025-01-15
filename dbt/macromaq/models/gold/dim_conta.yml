@@ -2,18 +2,18 @@ models:
   - name: dim_conta
     description: 
       >
-      Dimensão de Contas.
-      Esta dimensão foi criada com base na tabela lancamentos, 
+      Dimensao de Contas.
+      Esta dimensao foi criada com base na tabela lancamentos, 
       que por sua vez obteve quase todos estas colunas da tabela E045PLA.
     columns:
       - name: SK_CTA
         description: "SK da conta"
       - name: CTARED
-        description: "Código da conta de redução"
+        description: "Codigo da conta de reducao"
       - name: DESCTA
-        description: "Descrição da conta"
+        description: "Descricao da conta"
       - name: ABRCTA
-        description: "Abreviação da conta"
+        description: "Abreviao da conta"
       - name: CLACTA
         description: "Classe da conta"
     config:
