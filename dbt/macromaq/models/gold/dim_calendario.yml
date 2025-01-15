@@ -2,10 +2,10 @@ models:
   - name: dim_calendario
     description: 
       >
-      Dimensao Calendário.
-      Esta dimensão foi criada com base nas datas mínima e máxima do campo DATLCT 
+      Dimensao Calendario.
+      Esta dimensao foi criada com base nas datas minima e maxima do campo DATLCT 
       encontradas na tabela lancamentos.
-      A partir destas datas, o calendário é criado, além dos campos que podem descrever
+      A partir destas datas, o calendario e criado, alem dos campos que podem descrever
       melhor os detalhes de cada data, ajudando nos filtros de datas na tabela fato_lancamentos
       e consequente na geracao de relatorios.
     columns:
@@ -15,50 +15,50 @@ models:
           not_null: true
         description: 
           >
-          Datas obtidas a partir da mínima e máxima data encontrada na tabela movimentos, 
+          Datas obtidas a partir da minima e maxima data encontrada na tabela movimentos, 
           mais especificamente atraves do campo DATLCT
       - name: PRIMEIRO_DIA_DO_MES
-        description: "Data que representa o primeiro dia do mês"
+        description: "Data que representa o primeiro dia do mes"
         details:
           type: date
           not_null: true
       - name: ULTIMO_DIA_DO_MES
-        description: "Data que representa o último dia do mês"
+        description: "Data que representa o ultimo dia do mes"
         details:
           type: date
           not_null: true
       - name: ANO
-        description: "Ano do calendário"
+        description: "Ano do calendario"
         details:
           type: numeric
           not_null: true
       - name: SEMESTRE
-        description: "Semestre do calendário"
+        description: "Semestre do calendario"
         details:
           type: numeric
           not_null: true
       - name: TRIMESTRE
-        description: "Trimestre do calendário"
+        description: "Trimestre do calendario"
         details:
           type: numeric
           not_null: true
       - name: TRIMESTRE_ANO
-        description: "Trimestre do calendário com o ano"
+        description: "Trimestre do calendario com o ano"
         details:
           type: text
           not_null: true
       - name: MES
-        description: "Mês do calendário"
+        description: "Mes do calendario"
         details:
           type: numeric
           not_null: true
       - name: MES_ANO
-        description: "Mês do calendário com o ano"
+        description: "Mes do calendario com o ano"
         details:
           type: text
           not_null: true
       - name: MES_DESCRICAO
-        description: "Descrição do mês"
+        description: "Descricao do mes"
         details:
           type: text
           not_null: true
@@ -68,12 +68,12 @@ models:
           type: numeric
           not_null: true
       - name: SEMANA_DO_MES
-        description: "Semana do mês"
+        description: "Semana do mes"
         details:
           type: numeric
           not_null: true
       - name: DIA
-        description: "Dia do mês"
+        description: "Dia do mes"
         details:
           type: numeric
           not_null: true
@@ -88,7 +88,7 @@ models:
           type: numeric
           not_null: true
       - name: DIA_DA_SEMANA_DESCRICAO
-        description: "Descrição do dia da semana"
+        description: "Descricao do dia da semana"
         details:
           type: text
           not_null: true
