@@ -2,18 +2,18 @@ models:
   - name: dim_centro_custo
     description: 
       >
-      Dimensão de Centros de Custo.
-      Esta dimensão foi criada com base na tabela lancamentos, 
+      Dimensao de Centros de Custo.
+      Esta dimensao foi criada com base na tabela lancamentos, 
       que por sua vez obteve quase todos estas colunas da tabela E044CCU.
     columns:
       - name: SK_CCU
         description: "SK do centro de custo"
       - name: CODCCU
-        description: "Código do centro de custo"
+        description: "Codigo do centro de custo"
       - name: DESCCU
-        description: "Descrição do centro de custo"
+        description: "Descricao do centro de custo"
       - name: ABRCCU
-        description: "Abreviação do centro de custo"
+        description: "Abreviacao do centro de custo"
       - name: TIPCCU
         description: "Tipo do centro de custo"
       - name: MSKCCU
@@ -23,11 +23,11 @@ models:
       - name: GRUCCU
         description: "Grupo do centro de custo"
       - name: NIVCCU
-        description: "Nível do centro de custo"
+        description: "Nivel do centro de custo"
       - name: POSCCU
-        description: "Posição do centro de custo"
+        description: "Posicao do centro de custo"
       - name: ANASIN
-        description: "Contas Analíticas e Sintéticas"
+        description: "Contas Analiticas e Sinteticas"
     config:
       pre-hook:
         - >
