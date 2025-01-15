@@ -1,9 +1,9 @@
 models:
   - name: fato_lancamentos
-    description: "Fato de lançamentos com dados de calendário associados"
+    description: "Fato de lancamentos com dados de calendario associados"
     columns:
       - name: DATLCT
-        description: "Data do lançamento na tabela fato_lancamentos"
+        description: "Data do lancamento na tabela fato_lancamentos"
     config:
       pre-hook:
         - >
