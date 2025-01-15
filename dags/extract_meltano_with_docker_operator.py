@@ -11,14 +11,14 @@ from cosmos import DbtTaskGroup, ProjectConfig, ProfileConfig, ExecutionConfig, 
 meltano_path = os.getenv("MELTANO_PATH", "/home/macromaq/projetobi/meltano")
 meltano_hack_path = os.getenv("MELTANO_HACK_PATH", "/home/macromaq/projetobi/hack")
 
-# tables = ["e006pai", "e012fam", "e043pcm", "e044ccu", "e045pla", "e070fil", "e075pro", 
-#           "e080ser", "e085cli", "e090rep", "e091plf", "e095for", "e120ped", "e120rat", 
-#           "e120ipd", "e140ipv", "e140isv", "e140nfv", "e140rat", "e210mvp", "e440ipc",
-#           "e440nfc", "e440rat", "e600mcc", "e640rat", "e640lct", "e640lot", "e644lnf",
-#           "e440isc", "e130dme", "e130hfi", "e130csu", "e130ags", "e090rat", "e046hpd",
-#         ]
+tables = ["e006pai", "e012fam", "e043pcm", "e044ccu", "e045pla", "e070fil", "e075pro", 
+          "e080ser", "e085cli", "e090rep", "e091plf", "e095for", "e120ped", "e120rat", 
+          "e120ipd", "e140ipv", "e140isv", "e140nfv", "e140rat", "e210mvp", "e440ipc",
+          "e440nfc", "e440rat", "e600mcc", "e640rat", "e640lct", "e640lot", "e644lnf",
+          "e440isc", "e130dme", "e130hfi", "e130csu", "e130ags", "e090rat", "e046hpd",
+        ]
 
-tables = ["e044ccu", "e045pla","e070emp", "e070fil", "e640rat", "e640lct", "e640lot", "e046hpd" ]
+# tables = ["e044ccu", "e045pla","e070emp", "e070fil", "e640rat", "e640lct", "e640lot", "e046hpd" ]
 
 default_args = {
     'owner': 'airflow',
@@ -68,6 +68,7 @@ with DAG(
                         task_id=f'{table}',
                         entrypoint="/bin/bash",
                         command=f"./hack/meltano.sh {table} && meltano el tap-{table} target-postgres --state-id={table}-to-postgres",
+                        mount_tmp_dir=False,
                         mounts=[
                             Mount("/opt/meltano", meltano_path, type="bind"), 
                             Mount("/opt/meltano/hack", meltano_hack_path, type="bind")
@@ -90,7 +91,7 @@ with DAG(
         ),
         profile_config=ProfileConfig(
             profile_name="macromaq",
-            target_name="dev",
+            target_name=os.getenv("ENV"),
             profiles_yml_filepath="/opt/airflow/dbt/macromaq/profiles.yml",
         ),
         execution_config=ExecutionConfig(
